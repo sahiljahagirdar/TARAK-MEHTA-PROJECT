@@ -32,19 +32,6 @@ def assign_season(ep, size=200):
 df["Season"] = df["episode_number"].apply(assign_season)
 
 
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-image: url("https://i0.wp.com/deadant.co/wp-content/uploads/2023/07/TMKOC.png?fit=1366%2C768&ssl=1");
-        background-size: cover;
-        background-position: center;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Streamlit UI
 st.title("📺 Taarak Mehta Episode Recommender")
 
