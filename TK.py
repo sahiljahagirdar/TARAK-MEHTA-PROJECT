@@ -31,12 +31,26 @@ def assign_season(ep, size=200):
 
 df["Season"] = df["episode_number"].apply(assign_season)
 
+
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://i0.wp.com/deadant.co/wp-content/uploads/2023/07/TMKOC.png?fit=1366%2C768&ssl=1");
+        background-size: cover;
+        background-position: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Streamlit UI
 st.title("📺 Taarak Mehta Episode Recommender")
 
 # Dropdown for season
 season_order = sorted(df["Season"].unique(), key=lambda x: int(x.split('-')[0]))
-selected_season = st.selectbox("Choose a Season:", season_order)
+selected_season = st.selectbox("Choose Episode range:", season_order)
 
 # Filter dataset by selected season
 season_df = df[df['Season'] == selected_season]
@@ -53,4 +67,20 @@ if st.button("🎲 Recommend Random Episode"):
     # YouTube search link
     query = f"Taarak Mehta Episode {episode['episode_number']}"
     search_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(query)}"
-    st.markdown(f"[▶️ Watch on YouTube]({search_url})", unsafe_allow_html=True)
+    
+
+
+    st.markdown(f"""
+        <a href="{search_url}" target="_blank">
+            <button style="
+                background-color:#FF0000;
+                color:white;
+                padding:12px 24px;
+                font-size:16px;
+                border-radius:8px;
+                border:none;
+                cursor:pointer;">
+                ▶️ Watch on YouTube
+            </button>
+        </a>
+        """, unsafe_allow_html=True)
